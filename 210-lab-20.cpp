@@ -18,11 +18,12 @@ public:
         for (int i = 0; i < SIZE; i++)
             prices[i] = (rand() % (MAX-MIN+1) + MIN) / (double) 100; // random price between 100.00 and 999.99
     }
-    Chair(int l) {
+    Chair(int l, double p1, double p2, double p3) { // constructor with legs and array of 3 prices as parameters.
         prices = new double[SIZE];
         legs = l;
-        for (int i = 0; i < SIZE; i++)
-            prices[i] = 0;
+        prices[0] = p1;
+        prices[1] = p2;
+        prices[2] = p3;
     }
 
     // setters and getters
