@@ -1,4 +1,5 @@
 #include <iostream>
+
 #include <iomanip>
 
 using namespace std;
@@ -6,86 +7,80 @@ const int SIZE = 3;
 const int MIN = 10000;
 const int MAX = 99999; // MIN and MAX for random price generation
 
-class Chair
-{
-private:
-    int legs;
-    double *prices;
+class Chair {
+    private: int legs;
+    double * prices;
 
-public:
-    // constructors
-    Chair()
-    {
-        prices = new double[SIZE];
-        legs = rand() % 2 + 3; // 3 or 4 legs
-        for (int i = 0; i < SIZE; i++)
-            prices[i] = (rand() % (MAX - MIN + 1) + MIN) / (double)100; // random price between 100.00 and 999.99
-    }
-    Chair(int l, double priceArray[SIZE])
-    {                              // constructor with legs and array of 3 prices.
+    public:
+        // constructors
+        Chair() {
+            prices = new double[SIZE];
+            legs = rand() % 2 + 3; // 3 or 4 legs
+            for (int i = 0; i < SIZE; i++)
+                prices[i] = (rand() % (MAX - MIN + 1) + MIN) / (double) 100; // random price between 100.00 and 999.99
+        }
+    Chair(int l, double priceArray[SIZE]) { // constructor with legs and array of 3 prices.
         prices = new double[SIZE]; // Creates dynamic array for prices
-        legs = l;                  // Sets legs to the value passed in
+        legs = l; // Sets legs to the value passed in
         for (int i = 0; i < SIZE; i++)
             prices[i] = priceArray[i]; // Copies the values from the passed in array to the member variable array.
     }
 
     // setters and getters
-    void setLegs(int l) { legs = l; }
-    int getLegs() { return legs; }
+    void setLegs(int l) {
+        legs = l;
+    }
+    int getLegs() {
+        return legs;
+    }
 
-    void setPrices(double p1, double p2, double p3)
-    {
+    void setPrices(double p1, double p2, double p3) {
         prices[0] = p1;
         prices[1] = p2;
         prices[2] = p3;
     }
 
-    double getAveragePrices()
-    {
+    double getAveragePrices() {
         double sum = 0;
         for (int i = 0; i < SIZE; i++)
             sum += prices[i];
         return sum / SIZE;
     }
 
-    void print()
-    {
+    void print() {
         cout << "CHAIR DATA - legs: " << legs << endl;
         cout << "Price history: ";
         for (int i = 0; i < SIZE; i++)
             cout << prices[i] << " ";
-        cout << endl
-             << "Historical avg price: " << getAveragePrices();
-        cout << endl
-             << endl;
+        cout << endl <<
+            "Historical avg price: " << getAveragePrices();
+        cout << endl <<
+            endl;
     }
 };
 
-int main()
-{
+int main() {
     cout << fixed << setprecision(2);
-/*
-    // creating pointer to first chair object
-    Chair *chairPtr = new Chair;
-    chairPtr->setLegs(4);
-    chairPtr->setPrices(121.21, 232.32, 414.14);
-    chairPtr->print();
+    /*
+        // creating pointer to first chair object
+        Chair *chairPtr = new Chair;
+        chairPtr->setLegs(4);
+        chairPtr->setPrices(121.21, 232.32, 414.14);
+        chairPtr->print();
 
-    // creating dynamic chair object with constructor
-    Chair *livingChair = new Chair[SIZE];
-    livingChair->setPrices(525.25, 434.34, 252.52);
-    livingChair->print();
-    delete livingChair;
-    livingChair = nullptr;
-*/
+        // creating dynamic chair object with constructor
+        Chair *livingChair = new Chair[SIZE];
+        livingChair->setPrices(525.25, 434.34, 252.52);
+        livingChair->print();
+        delete livingChair;
+        livingChair = nullptr;
+    */
     // creating dynamic array of chair objects
-    Chair *collection = new Chair[SIZE];
-    for (int i = 0; i < SIZE; i++)
-    {
+    Chair * collection = new Chair[SIZE];
+    for (int i = 0; i < SIZE; i++) {
         collection[i] = Chair(); // Calls default constructor for each chair in the collection
     }
-    for (int i = 0; i < SIZE; i++)
-    {
+    for (int i = 0; i < SIZE; i++) {
         collection[i].print();
     }
     return 0;
